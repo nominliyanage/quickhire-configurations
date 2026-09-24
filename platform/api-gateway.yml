@@ -9,6 +9,19 @@ spring:
             locator:
               enabled: true
               lower-case-service-id: true
+          routes:
+            - id: user-service-api
+              uri: lb://user-service
+              predicates:
+                - Path=/api/users/**
+            - id: job-service-api
+              uri: lb://job-service
+              predicates:
+                - Path=/api/jobs/**
+            - id: file-service-api
+              uri: lb://file-service
+              predicates:
+                - Path=/api/files/**
 eureka:
   instance:
     prefer-ip-address: true
